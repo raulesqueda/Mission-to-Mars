@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Mission to Mars</title>
+   <link
+     rel="stylesheet"
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+   />
+   <style type="text/css">
+    .mystyle {
+    margin: 0 auto;
+    font-size: 10pt; 
+    font-family: Arial;
+    border-collapse: collapse; 
+    border: 1px solid silver;}
+    .mystyle td, th {
+    padding: 5px;}
+    .mystyle tr:nth-child(even) {
+    background: #E0E0E0;}
+    .mystyle tr:hover {
+    background: silver;}
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+       <h1>Mission to Mars</h1>
+       <p><a class="btn btn-primary btn-lg" href="/scrape"
+                   role="button">Scrape New Data</a></p>
+    </div>
+    <!-- Mars News -->
+    <div class="row" id="mars-news">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2>Latest Mars News</h2>
+          </div>
+          <div class="panel-body">
+            <h4 class="media-heading">{{mars.news_title}}</h4>
+            <p>{{mars.news_paragraph}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Featured Image -->
+    <!-- First level -->
+    <div class="row" id="mars-featured-image">
+      <!-- Second level -->
+      <div class="col-md-8 col-xs-12">
+        <h2>Featured Mars Image</h2>
+        <hr>
+        <img src="{{mars.featured_image}}" class="img-responsive img-rounded" alt="Responsive image"/>
+      </div>
+      <!-- Mars Facts -->
+      <div class="col-md-4">
+        <div class="row text-center" id="mars-facts">
+          <h3>Mars Facts</h3>
+          <div class="text-center col-xs-12">
+            {{ mars.facts | safe }}
+          </div>
+        </div>
+      </div>
+      <!-- hemisphere image -->
+      <div class="col-md-12">
+        <div class="row text-center" id="hemisphere-image">
+          <h3>Hemisphere Images</h3>
+        </div>
+        {% for hemisphere in mars.hemisphere_image %}
+        <div class="col-md-3 col-xs-3">
+          <div class="thumbnail">
+            <img src="{{hemisphere.img_url}}" class="img-responsive img-rounded" alt="Responsive image">
+            <div class="text-center">
+              <h5>{{hemisphere.title}}</h5>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+</body>
+</html>
